@@ -17,39 +17,10 @@ import java.util.Map;
 
 import org.haxe.extension.Extension;
 
-/* 
-	You can use the Android Extension class in order to hook
-	into the Android activity lifecycle. This is not required
-	for standard Java code, this is designed for when you need
-	deeper integration.
-
-	You can access additional references from the Extension class,
-	depending on your needs:
-
-	- Extension.assetManager (android.content.res.AssetManager)
-	- Extension.callbackHandler (android.os.Handler)
-	- Extension.mainActivity (android.app.Activity)
-	- Extension.mainContext (android.content.Context)
-	- Extension.mainView (android.view.View)
-
-	You can also make references to static or instance methods
-	and properties on Java classes. These classes can be included 
-	as single files using < java path="to/File.java" /> within your
-	project, or use the full Android Library Project format (such
-	as this example) in order to include your own AndroidManifest
-	data, additional dependencies, etc.
-
-	These are also optional, though this example shows a static
-	function for performing a single task, like returning a value
-	back to Haxe from Java.
-*/
 public class KizzyClient extends Extension {
-
-	//////////////////////////////////////////////////////
 
 	public static final String LOG_TAG = "KizzyClient";
 
-	private String token;
 	private String application_id;
 	private String name;
 	private String details;
@@ -81,13 +52,6 @@ public class KizzyClient extends Extension {
 	//////////////////////////////////////////////////////
 
 	public KizzyClient() {
-		// this is here to not break lime extension shit.
-	}
-
-	public KizzyClient(String token) {
-
-		this.token = token;
-
 		heartbeatRunnable = new Runnable() {
 			public void run() {
 				try {
@@ -193,12 +157,10 @@ public class KizzyClient extends Extension {
 		assets.put("small_image", small_image);
 		activity.put("assets", assets);
 
-		if (buttons.size() > 0)
-		{
+		if (buttons.size() > 0) {
 			activity.put("buttons", buttons);
 
-			if (button_urls.size() > 0)
-			{
+			if (button_urls.size() > 0) {
 				ArrayMap<String, Object> metadata = new ArrayMap<String, Object>();
 				metadata.put("button_urls", button_urls);
 				activity.put("metadata", metadata);
@@ -206,9 +168,7 @@ public class KizzyClient extends Extension {
 		}
 
 		ArrayMap<String, Object> d = new ArrayMap<String, Object>();
-		d.put("activities", new Object[] {
-			activity
-		});
+		d.put("activities", new Object[] { activity });
 		d.put("afk", true);
 		d.put("since", start);
 		d.put("status", status);
@@ -221,26 +181,6 @@ public class KizzyClient extends Extension {
 		} else {
 			createClient();
 		}
-	}
-
-	private void sendIdentify() {
-		ArrayMap<String, Object> properties = new ArrayMap<String, Object>();
-		properties.put("os", "Linux");
-		properties.put("browser", "Unknown");
-		properties.put("device", "Android " + Build.VERSION.RELEASE + " (API " + Build.VERSION.SDK_INT + ")");
-
-		ArrayMap<String, Object> d = new ArrayMap<String, Object>();
-		d.put("capabilities", 65);
-		d.put("compress", false);
-		d.put("largeThreshold", 100);
-		d.put("properties", properties);
-		d.put("token", token);
-
-		ArrayMap<String, Object> identify = new ArrayMap<String, Object>();
-		identify.put("op", 2);
-		identify.put("d", d);
-
-		sendToClient(identify);
 	}
 
 	//////////////////////////////////////////////////////
@@ -266,7 +206,7 @@ public class KizzyClient extends Extension {
 			@Override
 			public void onMessage(String message) {
 				ArrayMap<String, Object> map = gson.fromJson(
-					message, new TypeToken < ArrayMap<String, Object>>() {}.getType()
+					message, new TypeToken<ArrayMap<String, Object>>() {}.getType()
 				);
 
 				if (map.get("s") != null) {
@@ -285,6 +225,7 @@ public class KizzyClient extends Extension {
 							sendToClient(rpc);
 							return;
 						}
+						break;
 					case 1:
 						if (heartbeatThread != null && !heartbeatThread.interrupted()) {
 							heartbeatThread.interrupt();
@@ -304,8 +245,8 @@ public class KizzyClient extends Extension {
 							heartbeatThread.interrupt();
 							heartbeatThread = new Thread(heartbeatRunnable);
 							heartbeatThread.start();
-							sendIdentify();
 						}
+						break;
 					case 10:
 						if (heartbeatThread != null && !heartbeatThread.interrupted()) {
 							heartbeatThread.interrupt();
@@ -315,22 +256,6 @@ public class KizzyClient extends Extension {
 						heartbeatInterval = ((Double) mapd.get("heartbeat_interval")).intValue();
 						heartbeatThread = new Thread(heartbeatRunnable);
 						heartbeatThread.start();
-
-						if (reconnect_session) {
-							reconnect_session = false;
-
-							ArrayMap<String, Object> d = new ArrayMap<String, Object>();
-							d.put("token", token);
-							d.put("session_id", session_id);
-							d.put("seq", seq);
-
-							ArrayMap<String, Object> reconnectObj = new ArrayMap<String, Object>();
-							reconnectObj.put("op", 6);
-							reconnectObj.put("d", d);
-							sendToClient(reconnectObj);
-						} else {
-							sendIdentify();
-						}
 
 						break;
 					case 11:
@@ -369,7 +294,7 @@ public class KizzyClient extends Extension {
 
 			@Override
 			public void onError(Exception e) {
-				if (!e.getMessage().equals("Interrupt")) {
+				if (!"Interrupt".equals(e.getMessage())) {
 					closeClient();
 				} else {
 					Log.e(LOG_TAG, e.toString());
@@ -395,21 +320,15 @@ public class KizzyClient extends Extension {
 	}
 
 	public boolean isClientRunning() {
-		if (webSocketClient != null)
-			return webSocketClient.isOpen();
-
-		return false;
+		return webSocketClient != null && webSocketClient.isOpen();
 	}
 
-	//////////////////////////////////////////////////////
+	public void reconnect() {
+		createClient();
+	}
 
-	/**
-	 * Perform any final cleanup before an activity is destroyed.
-	 */
 	@Override
 	public void onDestroy() {
 		closeClient();
 	}
-
-	//////////////////////////////////////////////////////
-}
+			}
