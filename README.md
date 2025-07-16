@@ -53,7 +53,7 @@ kizzyClient.setStatus('idle');
 kizzyClient.closeOnDestroy(true);
 kizzyClient.rebuildClient();
 ```
-Use the [Kizzy](https://kizzy.dead8309.xyz/) for seeing more about types and setting up RPC image.
+Use the [Kizzy](https://kizzy.dead8309.xyz/) for seeing more about types and setting up RPC image, or, copy the image link from your discord client.
 
 # License
 Read [License](https://github.com/yNeoNova/extension-kizzyrpc/blob/main/LICENSE) to see what you can and can't do with this repo.
