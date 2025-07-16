@@ -6,18 +6,25 @@ A extension that uses Lime JNI to work that add's support for discord rpc to and
 Installation instructions
 =======
 
-Step 1. Install the Haxelib.
-
-You can install it through haxelib:
+Step 1. Install the Library through haxelib
 
 ```
-haxelib install extension-kizzyrpc
+haxelib git extension-kizzyrpc https://github.com/yNeoNova/extension-kizzyrpc.git
 ```
 
-You can also install it through Git for the latest updates:
-
-```
-haxelib git extension-kizzyrpc https://github.com/MAJigsaw77/extension-kizzyrpc.git
+Or, you could pick [Haxe Module Manager](https://lib.haxe.org/p/hmm/), aka HMM:
+```json
+{
+  "dependencies": [
+    {
+      "name": "extension-kizzyrpc",
+      "type": "git",
+      "url": "https://github.com/yNeoNova/extension-kizzyrpc",
+      "ref": "main",
+      "dir": null
+    }
+  ]
+}
 ```
 
 Step 2. Add this in `Project.xml`.
@@ -31,7 +38,8 @@ Step 3. Done, this is a little example for how to use it.
 ```haxe
 import android.kizzy.KizzyClient;
 
-var kizzyClient:KizzyClient = new KizzyClient(token); // your account token
+var kizzyClient:KizzyClient = new KizzyClient();
+
 kizzyClient.setApplicationID('378534231036395521');
 kizzyClient.setName('Kizzy RPC Client Android');
 kizzyClient.setDetails('When RPC is sus');
@@ -45,3 +53,11 @@ kizzyClient.setStatus('idle');
 kizzyClient.closeOnDestroy(true);
 kizzyClient.rebuildClient();
 ```
+Use the [Kizzy](https://kizzy.dead8309.xyz/) for seeing more about types and setting up RPC image.
+
+# License
+Read [License](https://github.com/yNeoNova/extension-kizzyrpc/blob/main/LICENSE) to see what you can and can't do with this repo.
+
+# CREDITS:
+> Thanks to MAjigsaw77 for the original library
+> Thanks to Fearester2008 for the repository
