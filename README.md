@@ -59,5 +59,6 @@ Use the [Kizzy](https://kizzy.dead8309.xyz/) for seeing more about types and set
 Read [License](https://github.com/yNeoNova/extension-kizzyrpc/blob/main/LICENSE) to see what you can and can't do with this repo.
 
 # CREDITS:
-> Thanks to MAjigsaw77 for the original library
-> Thanks to Fearester2008 for the repository
+• Thanks to MAjigsaw77 for the original library
+
+• Thanks to Fearester2008 for the repository
