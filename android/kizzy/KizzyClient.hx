@@ -18,10 +18,10 @@ class KizzyClient
 
 	//////////////////////////////////////////////////////
 
-	public function new(token:String):Void
+	// Updated constructor without token parameter
+	public function new()
 	{
-		var constructor_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/KizzyClient', '<init>', '(Ljava/lang/String;)V');
-                constructor = constructor_jni(token);
+		constructor = JNI.createNewObject('org/haxe/extension/KizzyClient', '()V');
 	}
 
 	//////////////////////////////////////////////////////
