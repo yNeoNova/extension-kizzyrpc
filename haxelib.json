@@ -1,6 +1,6 @@
 {
 	"name":"extension-kizzyrpc",
-	"url":"https://github.com/Fearester2008/extension-kizzyrpc",
+	"url":"https://github.com/yNeoNova/extension-kizzyrpc",
 	"license":"MIT",
 	"tags":[
 		"android",
@@ -9,9 +9,11 @@
 		"haxe"
 	],
 	"description":"A extension that uses Lime JNI to work that add's support for discord rpc to android.",
-	"version":"1.0.1",
-	"releasenote":"Updated the License.",
+	"version":"1.0.1-imp",
+	"releasenote": "Remove token support",
 	"contributors":[
-		"Fearester2008"
+		"Fearester2008",
+		"Leo",
+		"MAjigsaw77"
 	]
 }
