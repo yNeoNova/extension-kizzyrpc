@@ -1,6 +1,6 @@
 {
-	"name":"extension-kizzyrpc",
-	"url":"https://github.com/yNeoNova/extension-kizzyrpc",
+	"name":"extension-kizzyrpc-imp",
+	"url":"https://github.com/yNeoNova/extension-kizzyrpc-imp",
 	"license":"MIT",
 	"tags":[
 		"android",
@@ -13,7 +13,7 @@
 	"releasenote": "Remove token support",
 	"contributors":[
 		"Fearester2008",
-		"Leo",
+		"Leonardo Ferreira da Silva",
 		"MAjigsaw77"
 	]
 }
