@@ -9,7 +9,7 @@ Installation instructions
 Step 1. Install the Library through haxelib
 
 ```
-haxelib git extension-kizzyrpc https://github.com/yNeoNova/extension-kizzyrpc.git
+haxelib git extension-kizzyrpc-imp https://github.com/yNeoNova/extension-kizzyrpc-imp.git
 ```
 
 Or, you could pick [Haxe Module Manager](https://lib.haxe.org/p/hmm/), aka HMM:
