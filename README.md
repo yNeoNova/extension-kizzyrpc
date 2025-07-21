@@ -1,4 +1,4 @@
-extension-kizzyrpc
+extension-kizzyrpc-imp
 =======
 
 A extension that uses Lime JNI to work that add's support for discord rpc to android.
@@ -17,9 +17,9 @@ Or, you could pick [Haxe Module Manager](https://lib.haxe.org/p/hmm/), aka HMM:
 {
   "dependencies": [
     {
-      "name": "extension-kizzyrpc",
+      "name": "extension-kizzyrpc-imp",
       "type": "git",
-      "url": "https://github.com/yNeoNova/extension-kizzyrpc",
+      "url": "https://github.com/yNeoNova/extension-kizzyrpc-imp",
       "ref": "main",
       "dir": null
     }
@@ -30,7 +30,7 @@ Or, you could pick [Haxe Module Manager](https://lib.haxe.org/p/hmm/), aka HMM:
 Step 2. Add this in `Project.xml`.
 
 ```xml
-<haxelib name="extension-kizzyrpc" if="android" />
+<haxelib name="extension-kizzyrpc-imp" if="android" />
 ```
 
 Step 3. Done, this is a little example for how to use it.
@@ -56,7 +56,7 @@ kizzyClient.rebuildClient();
 Use the [Kizzy](https://kizzy.dead8309.xyz/) for seeing more about types and setting up RPC image, or, copy the image link from your discord client.
 
 # License
-Read [License](https://github.com/yNeoNova/extension-kizzyrpc/blob/main/LICENSE) to see what you can and can't do with this repo.
+Read [License](https://github.com/yNeoNova/extension-kizzyrpc-imp/blob/main/LICENSE) to see what you can and can't do with this repo.
 
 # CREDITS:
 • Thanks to MAjigsaw77 for the original library
